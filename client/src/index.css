@@ -1,0 +1,273 @@
+/* ===================== DESIGN TOKENS ===================== */
+:root {
+  /* Dark theme (inner pages) */
+  --color-bg: #000209;
+  --color-accent: #9BB8E1;
+  --color-accent-dark: #2C4E73;
+  --color-accent-mid: #5f87b9;
+  --color-text: #eeeeee;
+  --color-muted: #6b8ba4;
+  --grad-blue: linear-gradient(90deg, #9BB8E1, #2C4E73);
+  --grad-blue-v: linear-gradient(180deg, #9BB8E1, #2C4E73);
+
+  /* Light theme (landing) */
+  --color-lp-bg: #f5f7fa;
+  --color-lp-text: #111111;
+  --color-lp-muted: rgba(0,0,0,0.35);
+  --color-lp-green: #00c547;
+  --color-lp-green-bright: #00e853;
+  --color-lp-border: rgba(0,0,0,0.08);
+}
+
+/* ===================== RESET ===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 10px; scroll-behavior: smooth; }
+
+body {
+  font-family: 'Space Grotesk', 'Inter', -apple-system, sans-serif;
+  background-color: var(--color-lp-bg);
+  color: var(--color-lp-text);
+  overflow-x: clip; /* clip not hidden — hidden creates scroll ctx and breaks sticky */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===================== SCROLLBAR ===================== */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--color-lp-bg); }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 3px; }
+
+/* ===================== GRADIENT TEXT ===================== */
+.grad-text {
+  background: linear-gradient(90deg, #9BB8E1, #5f87b9);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===================== NAVBAR ===================== */
+.dc-navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.4rem 3.2rem;
+}
+@media (min-width: 1024px) { .dc-navbar { padding: 3.2rem 5.6rem; } }
+
+.dc-navbar__logo {
+  display: flex; align-items: center; gap: 1.2rem;
+  text-decoration: none; color: #eee;
+}
+.dc-navbar__logo-mark {
+  width: 3.4rem; height: 3.4rem;
+  background: linear-gradient(135deg, #9BB8E1, #2C4E73);
+  border-radius: 0.7rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.dc-navbar__logo-text {
+  font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em;
+}
+.dc-navbar__links {
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.dc-navbar__link {
+  font-size: 1rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  padding: 0.8rem 1.4rem;
+  border-radius: 0.4rem;
+  background: none; border: none; cursor: pointer;
+  transition: color 0.25s;
+  font-family: inherit;
+}
+.dc-navbar__link:hover { color: #eee; }
+
+/* ===================== GLOW BUTTON ===================== */
+.btn-glow {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 1.3rem 3rem;
+  font-family: inherit;
+  font-size: 1.05rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #eee; text-decoration: none;
+  background: transparent;
+  border: 1.5px solid rgba(155,184,225,0.3);
+  border-radius: 0.7rem;
+  cursor: pointer; overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.btn-glow:hover {
+  border-color: rgba(155,184,225,0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(155,184,225,0.12);
+}
+.btn-glow--solid {
+  background: linear-gradient(135deg, rgba(155,184,225,0.14), rgba(44,78,115,0.22));
+  border-color: rgba(155,184,225,0.4);
+}
+.btn-glow--solid:hover {
+  background: linear-gradient(135deg, rgba(155,184,225,0.22), rgba(44,78,115,0.35));
+  border-color: rgba(155,184,225,0.8);
+  box-shadow: 0 0 40px rgba(155,184,225,0.2);
+}
+.btn-glow__shimmer {
+  position: absolute; inset: 0; overflow: hidden; border-radius: 0.7rem;
+  pointer-events: none;
+}
+@keyframes shimmerPass {
+  0%   { left: -100%; opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { left: 150%; opacity: 0; }
+}
+.btn-glow__shimmer::after {
+  content: '';
+  position: absolute; top: -50%; left: -100%; width: 60px; height: 200%;
+  background: rgba(155,184,225,0.15);
+  filter: blur(14px);
+  animation: shimmerPass 4s ease-in-out infinite;
+}
+
+/* ===================== PLAN BADGE ===================== */
+.plan-badge {
+  padding: 0.3rem 1rem; border-radius: 10rem;
+  font-size: 0.85rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ===================== FEATURE CARD ===================== */
+.feat-card {
+  background: rgba(155,184,225,0.03);
+  border: 1px solid rgba(155,184,225,0.1);
+  border-radius: 1.4rem; padding: 2.8rem;
+  transition: background 0.4s, border-color 0.4s, transform 0.4s;
+}
+.feat-card:hover {
+  background: rgba(155,184,225,0.07);
+  border-color: rgba(155,184,225,0.28);
+  transform: translateY(-6px);
+}
+
+/* ===================== PRICING CARD ===================== */
+.price-card {
+  background: rgba(155,184,225,0.03);
+  border: 1.5px solid rgba(155,184,225,0.12);
+  border-radius: 1.8rem; padding: 3.6rem;
+  transition: all 0.45s cubic-bezier(0.14,1,0.34,1);
+  display: flex; flex-direction: column; height: 100%;
+}
+.price-card:hover {
+  background: rgba(155,184,225,0.07);
+  border-color: rgba(155,184,225,0.3);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.price-card--popular {
+  background: rgba(44,78,115,0.18);
+  border-color: rgba(155,184,225,0.38);
+}
+.price-card--popular:hover {
+  background: rgba(44,78,115,0.3);
+  border-color: #9BB8E1;
+  box-shadow: 0 20px 60px rgba(44,78,115,0.25);
+}
+.price-badge {
+  position: absolute; top: -1.6rem; left: 50%; transform: translateX(-50%);
+  background: linear-gradient(90deg,#9BB8E1,#2C4E73);
+  padding: 0.5rem 2.4rem; border-radius: 10rem;
+  font-size: 0.85rem; font-weight: 800; letter-spacing: 0.15em;
+  text-transform: uppercase; white-space: nowrap; color: #fff;
+}
+
+/* ===================== INPUT DARK ===================== */
+.input-dark {
+  width: 100%; padding: 1.2rem 1.6rem;
+  background: rgba(155,184,225,0.05);
+  border: 1px solid rgba(155,184,225,0.15);
+  border-radius: 0.8rem;
+  color: #eee; font-size: 1.4rem; font-family: inherit;
+  outline: none; transition: border-color 0.3s;
+}
+.input-dark:focus { border-color: rgba(155,184,225,0.5); }
+.input-dark::placeholder { color: rgba(155,184,225,0.25); }
+.label-dark {
+  display: block; font-size: 1rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(155,184,225,0.65); margin-bottom: 0.8rem;
+}
+
+/* ===================== GLASS CARD ===================== */
+.glass-card {
+  background: rgba(155,184,225,0.04);
+  border: 1px solid rgba(155,184,225,0.12);
+  border-radius: 1.6rem;
+}
+
+/* ===================== INNER PAGE ===================== */
+.inner-page {
+  min-height: 100vh;
+  padding-top: 9rem; padding-bottom: 8rem;
+  position: relative;
+}
+.inner-page__container {
+  max-width: 1280px; margin: 0 auto; padding: 0 3.2rem;
+}
+
+/* ===================== TERMINAL ===================== */
+.terminal {
+  background: rgba(155,184,225,0.04);
+  border: 1px solid rgba(155,184,225,0.12);
+  border-radius: 1.4rem; padding: 2.8rem;
+  font-family: 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+  font-size: 1.3rem; line-height: 2.1;
+}
+.terminal__dots { display: flex; gap: 0.6rem; margin-bottom: 2.4rem; }
+.terminal__dot { width: 1.2rem; height: 1.2rem; border-radius: 50%; }
+
+/* ===================== SECTION LABEL ===================== */
+.sec-label {
+  font-size: 1rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #9BB8E1;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 900px) {
+  .dc-navbar__link:not(:last-child):not(:nth-last-child(2)) { display: none; }
+}
+@media (max-width: 768px) {
+  .inner-page__container { padding: 0 2rem; }
+}
+
+/* ===================== NOISE ===================== */
+.noise {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ===================== LANDING PAGE LIGHT THEME ===================== */
+/* Override body background for landing — landing sets its own bg */
+body:has(#landing-page) {
+  background-color: var(--color-lp-bg);
+}
+
+/* ===================== KEYFRAMES ===================== */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}

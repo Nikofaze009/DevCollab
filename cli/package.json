@@ -1,0 +1,17 @@
+{
+  "name": "devcollab-cli",
+  "version": "1.0.0",
+  "description": "Custom CLI for DevCollab",
+  "main": "bin/dev.js",
+  "bin": {
+    "dev": "./bin/dev.js"
+  },
+  "dependencies": {
+    "archiver": "^5.3.2",
+    "axios": "^1.6.0",
+    "commander": "^11.1.0",
+    "form-data": "^4.0.5",
+    "ignore": "^7.0.5"
+  },
+  "type": "commonjs"
+}
