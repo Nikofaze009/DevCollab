@@ -63,7 +63,7 @@ const pushRepo = async (message) => {
   // Glob pattern to zip everything except ignored folders
   archive.glob('**/*', {
     cwd: process.cwd(),
-    ignore: ['node_modules/**', '.git/**', '.devcollab/**']
+    ignore: ['**/node_modules/**', '**/.git/**', '**/.devcollab/**']
   });
 
   archive.finalize();
