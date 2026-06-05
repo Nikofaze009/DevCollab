@@ -40,6 +40,14 @@ repo
     repoCmd.listRepos();
   });
 
+repo
+  .command('delete')
+  .description('Delete a repository')
+  .argument('<id>', 'ID of the repository to delete')
+  .action((id) => {
+    repoCmd.deleteRepo(id);
+  });
+
 const initCmd = require('../commands/init');
 const pushCmd = require('../commands/push');
 

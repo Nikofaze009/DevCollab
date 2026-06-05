@@ -52,4 +52,17 @@ const listRepos = async () => {
   }
 };
 
-module.exports = { createRepo, listRepos };
+const deleteRepo = async (id) => {
+  try {
+    const api = getClient();
+    console.log(`Deleting repository '${id}'...`);
+    
+    await api.delete(`/repos/${id}`);
+    
+    console.log(`\nSuccess! Repository deleted.`);
+  } catch (error) {
+    console.error(`\nError deleting repo: ${error.response?.data?.message || error.message}`);
+  }
+};
+
+module.exports = { createRepo, listRepos, deleteRepo };
