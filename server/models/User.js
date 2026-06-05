@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema({
     enum: ['free', 'pro', 'team'],
     default: 'free'
   },
-  stripeCustomerId: {
+  lsCustomerId: {
     type: String,
     default: ''
   }

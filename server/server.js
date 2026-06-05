@@ -8,7 +8,7 @@ connectDB();
 
 const app = express();
 
-// Stripe webhook must receive raw body BEFORE express.json() is applied
+// Lemon Squeezy webhook must receive raw body BEFORE express.json() is applied
 app.use('/api/billing/webhook', express.raw({ type: 'application/json' }));
 
 // Middleware

@@ -20,19 +20,19 @@ const FadeUp = ({ children, delay = 0, style = {}, className = "" }) => (
 
 const plans = [
   {
-    id: 'free', name: 'Free', price: '$0', period: 'forever',
+    id: 'free', name: 'Free', price: '₹0', period: 'forever',
     desc: 'Perfect for solo developers and side projects.',
     features: ['3 public repositories', '2 collaborators per repo', '10 code pushes / month', 'Custom CLI (dev command)', 'Issue tracking', 'Pull request management'],
     popular: false, ctaText: 'Get started', ctaLink: '/register',
   },
   {
-    id: 'pro', name: 'Pro', price: '$9', period: '/month',
+    id: 'pro', name: 'Pro', price: '₹150', period: '/month',
     desc: 'For professional developers who need more power.',
     features: ['Unlimited repositories', 'Private repositories', 'Up to 10 collaborators', 'Unlimited code pushes', 'Everything in Free', 'Priority support'],
     popular: true, ctaText: 'Upgrade to Pro',
   },
   {
-    id: 'team', name: 'Team', price: '$29', period: '/month',
+    id: 'team', name: 'Team', price: '₹300', period: '/month',
     desc: 'For teams building products together at scale.',
     features: ['Everything in Pro', 'Unlimited collaborators', 'Team management dashboard', 'Advanced analytics', 'Audit logs', 'Dedicated support'],
     popular: false, ctaText: 'Upgrade to Team',
@@ -149,9 +149,9 @@ const Pricing = () => {
     try {
       const res = await api.post('/billing/create-checkout', { plan: planId });
       if (res.data.url) window.location.href = res.data.url;
-      else alert(res.data.message || 'Stripe not configured. Add STRIPE_SECRET_KEY to server/.env');
+      else alert(res.data.message || 'Lemon Squeezy not configured. Add LEMONSQUEEZY_API_KEY to server/.env');
     } catch (err) {
-      alert(err.response?.data?.message || 'Configure Stripe in server/.env to enable payments.');
+      alert(err.response?.data?.message || 'Configure Lemon Squeezy in server/.env to enable payments.');
     } finally {
       setLoading(null);
     }
@@ -193,7 +193,7 @@ const Pricing = () => {
         <FadeUp delay={0.4} style={{ textAlign: 'center', marginTop: '6.4rem' }}>
           <p style={{ fontSize: '1.4rem', color: 'rgba(0,0,0,0.4)', lineHeight: 1.8, fontWeight: 500 }}>
             All plans include the <span style={{ fontFamily: 'monospace', background: 'rgba(0,0,0,0.05)', padding: '0.2rem 0.6rem', borderRadius: '0.2rem', color: '#111', fontWeight: 600 }}>dev</span> CLI tool.<br/>
-            Payments powered by Stripe. Cancel anytime.
+            Payments powered by Lemon Squeezy. Cancel anytime.
           </p>
         </FadeUp>
 
@@ -207,7 +207,7 @@ const Pricing = () => {
               <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '600px' }}>
                 <thead>
                   <tr>
-                    {['Feature', 'Free', 'Pro', 'Team'].map((h, i) => (
+                    {['Feature', 'Free  ₹0', 'Pro  ₹150/mo', 'Team  ₹300/mo'].map((h, i) => (
                       <th key={h} style={{ padding: '2rem 2.4rem', textAlign: i === 0 ? 'left' : 'center', fontSize: '1.2rem', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: i === 0 ? 'rgba(0,0,0,0.4)' : '#111', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>{h}</th>
                     ))}
                   </tr>

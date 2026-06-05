@@ -12,11 +12,11 @@ const subscriptionSchema = new mongoose.Schema({
     enum: ['free', 'pro', 'team'],
     default: 'free'
   },
-  stripeCustomerId: {
+  lsCustomerId: {
     type: String,
     default: ''
   },
-  stripeSubscriptionId: {
+  lsSubscriptionId: {
     type: String,
     default: ''
   },

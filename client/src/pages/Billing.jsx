@@ -8,9 +8,9 @@ import { motion } from 'framer-motion';
 const EXPO = [0.16, 1, 0.3, 1];
 
 const PLAN_META = {
-  free: { label: 'Free', color: 'rgba(0,197,71,0.1)', textColor: '#00c547', limits: '3 public repos • 2 collaborators • 10 pushes/mo' },
-  pro: { label: 'Pro', color: 'rgba(44,78,115,0.1)', textColor: '#2C4E73', limits: 'Unlimited repos • 10 collaborators • Unlimited pushes' },
-  team: { label: 'Team', color: 'rgba(155,184,225,0.2)', textColor: '#5f87b9', limits: 'Unlimited everything • Team management' }
+  free: { label: 'Free', color: 'rgba(0,197,71,0.1)', textColor: '#00c547', limits: '3 public repos • 2 collaborators • 10 pushes/mo • ₹0/month' },
+  pro:  { label: 'Pro',  color: 'rgba(44,78,115,0.1)', textColor: '#2C4E73', limits: 'Unlimited repos • 10 collaborators • Unlimited pushes • ₹150/month' },
+  team: { label: 'Team', color: 'rgba(155,184,225,0.2)', textColor: '#5f87b9', limits: 'Unlimited everything • Team management • ₹300/month' }
 };
 
 const Billing = () => {
@@ -43,7 +43,7 @@ const Billing = () => {
       if (res.data.url) window.location.href = res.data.url;
       else alert(res.data.message);
     } catch (err) {
-      alert(err.response?.data?.message || 'Error opening billing portal. Configure Stripe first.');
+      alert(err.response?.data?.message || 'Error opening billing portal. Configure Lemon Squeezy first.');
     } finally {
       setPortalLoading(false);
     }
@@ -180,10 +180,10 @@ const Billing = () => {
             <AlertCircle size={24} color="#ff9000" strokeWidth={2} style={{ marginTop: '0.2rem', flexShrink: 0 }} />
             <div>
               <p style={{ color: '#111', fontWeight: 800, fontSize: '1.4rem', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '0.8rem' }}>
-                Stripe not configured yet
+                Lemon Squeezy not configured yet
               </p>
               <p style={{ color: 'rgba(0,0,0,0.6)', fontSize: '1.3rem', fontWeight: 500, lineHeight: 1.6 }}>
-                To enable real payments, add your <span style={{ fontFamily: 'monospace', background: 'rgba(0,0,0,0.05)', padding: '0.2rem 0.6rem', borderRadius: '0.2rem', color: '#111', fontWeight: 600 }}>STRIPE_SECRET_KEY</span> and price IDs to <span style={{ fontFamily: 'monospace', background: 'rgba(0,0,0,0.05)', padding: '0.2rem 0.6rem', borderRadius: '0.2rem', color: '#111', fontWeight: 600 }}>server/.env</span>. 
+                To enable real payments, add your <span style={{ fontFamily: 'monospace', background: 'rgba(0,0,0,0.05)', padding: '0.2rem 0.6rem', borderRadius: '0.2rem', color: '#111', fontWeight: 600 }}>LEMONSQUEEZY_API_KEY</span> to <span style={{ fontFamily: 'monospace', background: 'rgba(0,0,0,0.05)', padding: '0.2rem 0.6rem', borderRadius: '0.2rem', color: '#111', fontWeight: 600 }}>server/.env</span>. 
                 Visit the <Link to="/pricing" style={{ color: '#00b03f', fontWeight: 700, textDecoration: 'none' }}>Pricing page</Link> to see all available plans.
               </p>
             </div>
