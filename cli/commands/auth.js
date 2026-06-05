@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { saveConfig } = require('../utils/config');
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://devcollab-6oq5.onrender.com/api';
 
 const login = async (email, password) => {
   try {

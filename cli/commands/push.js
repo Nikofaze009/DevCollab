@@ -5,7 +5,7 @@ const FormData = require('form-data');
 const axios = require('axios');
 const { getConfig } = require('../utils/config');
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://devcollab-6oq5.onrender.com/api';
 
 const pushRepo = async (message) => {
   const devCollabPath = path.join(process.cwd(), '.devcollab', 'config.json');
